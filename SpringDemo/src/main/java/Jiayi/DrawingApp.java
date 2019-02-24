@@ -10,5 +10,11 @@ public class DrawingApp {
         ApplicationContext factory = new ClassPathXmlApplicationContext("file:src/spring.xml");
         Triangle tr = (Triangle) factory.getBean("triangle");
         tr.draw();
+
+
+        // draw a circle
+        Circle cr = (Circle) factory.getBean("circle");
+        cr.draw();
+
     }
 }

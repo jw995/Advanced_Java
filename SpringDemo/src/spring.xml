@@ -2,9 +2,48 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
-    <bean id = "triangle" class = "Jiayi.Triangle">    <!--specify the class-->
+    <bean id="triangle" class="Jiayi.Triangle" autowire="byName">    <!--specify the class-->
         <!--<property name="type" value="Equilateral"/>   &lt;!&ndash;preset the object property&ndash;&gt;-->
         <constructor-arg type="java.lang.String" value="Equilateral"/>   <!--dependency injection using constructor-->
         <constructor-arg type="int" value="20"/>
+
+<!--        &lt;!&ndash;inner bean, does not need ref and id&ndash;&gt;
+        <property name="points">
+            <list>
+                <ref bean="point1"/>
+                <ref bean="point2"/>
+                <ref bean="point3"/>
+            </list>
+        </property>-->
     </bean>
+
+
+    <bean id="point1" class="Jiayi.Point">
+        <property name="x" value="0"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <bean id="point2" class="Jiayi.Point">
+        <property name="x" value="-20"/>
+        <property name="y" value="0"/>
+    </bean>
+
+    <bean id="point3" class="Jiayi.Point">
+        <property name="x" value="20"/>
+        <property name="y" value="0"/>
+    </bean>
+
+
+    <!--for circle-->
+    <bean id="circle" class="Jiayi.Circle">
+
+    </bean>
+
+    <bean id="center" class="Jiayi.Point">
+        <property name="x" value="30"/>
+        <property name="y" value="35"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
 </beans>
