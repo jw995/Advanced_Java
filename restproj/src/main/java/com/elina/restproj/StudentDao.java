@@ -55,12 +55,13 @@ public class StudentDao {
 	public Student getStudentByName(String stdname) {		
 		// don't forget the "" for strings in the clause
 		String sql = "select * from restdata where name = '" + stdname + "'";
-		Student s = new Student();
+		Student s = null;
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			
 			if(rs.next()) {
+				s = new Student();
 				s.setName(rs.getString(1));
 				s.setPoints(rs.getInt(2));
 			}
@@ -81,6 +82,36 @@ public class StudentDao {
 			st.setInt(2, s.getPoints());
 			st.executeUpdate();
 			System.out.println("Created a new student: " + s);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public void update(Student s) {
+		// TODO Auto-generated method stub
+		String sql = "update restdata set points = ? where name = ?";
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, s.getPoints());
+			st.setString(2, s.getName());
+			st.executeUpdate();
+			System.out.println("Updated student: " + s);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+
+	public void delete(String name) {
+		// TODO Auto-generated method stub
+		String sql = "delete from restdata where name = ?";
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			Student s = getStudentByName(name);
+			st.setString(1, name);
+			st.executeUpdate();
+			System.out.println("Deleted student: " + s);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
