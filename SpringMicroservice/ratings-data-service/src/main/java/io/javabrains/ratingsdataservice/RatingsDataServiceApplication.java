@@ -3,6 +3,7 @@ package io.javabrains.ratingsdataservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// a stand-alone spring application for movie ratings
 @SpringBootApplication
 public class RatingsDataServiceApplication {
 

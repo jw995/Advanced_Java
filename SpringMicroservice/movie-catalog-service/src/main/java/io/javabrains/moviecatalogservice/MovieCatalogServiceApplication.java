@@ -3,6 +3,7 @@ package io.javabrains.moviecatalogservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//a stand-alone spring application for movie info
 @SpringBootApplication
 public class MovieCatalogServiceApplication {
 

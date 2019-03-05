@@ -20,5 +20,16 @@
 	fault isolation -- won't affect entire application if one service goes 		down
 	mixed tech stack
 	granular scaling
+	spring boot -- auto config, Acuator can check if the service is healthy (url: /health)
 
 ### 4. Implementation: Spring boot
+
+### 5. Disadvantage of Microservice
+The system architechture will become complex, hard to debug or maintain since all the logs are at the same place. 
+
+##### *all theb service are stateless, so there is no sessions, use token
+
+
+### 6.steps to build and config a microservice
+-- create several spring boot appplications
+-- create relationship(REST calls) between the applcications(services) 
