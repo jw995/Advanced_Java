@@ -22,5 +22,3 @@
 	granular scaling
 
 ### 4. Implementation: Spring boot
-
-### 5.
