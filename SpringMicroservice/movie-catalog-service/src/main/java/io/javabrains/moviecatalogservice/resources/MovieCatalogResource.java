@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,9 @@ import io.javabrains.moviecatalogservice.models.Rating;
 @RestController
 @RequestMapping("/catalog")
 public class MovieCatalogResource {
+	
+	@Autowired
+	private RestTemplate restTemp;
 		
 	// how to create connection between catalog, movie and rating?
 		// 1. get all rated movie id
@@ -23,8 +27,6 @@ public class MovieCatalogResource {
 		// 3. put them together
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
-		 
-		RestTemplate restTemp = new RestTemplate();
 		
 		List<Rating> ratings = Arrays.asList(
 				new Rating("movie1", 3),
@@ -33,7 +35,7 @@ public class MovieCatalogResource {
 		
 		
 		return ratings.stream().map(rating -> {
-			Movie myMovie = restTemp.getForObject("http://localhost/8081/movie/" + rating.getMovieId(), Movie.class);
+			Movie myMovie = restTemp.getForObject("http://localhost:8082/movie/" + rating.getMovieId(), Movie.class);
 			return new CatalogItem(myMovie.getName(), "blablabla", rating.getRating());
 		})
 				.collect(Collectors.toList());

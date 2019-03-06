@@ -4,9 +4,7 @@ public class Movie {
 	private String movieID;
 	private String name;
 	
-	public Movie() {
-		
-	}
+	public Movie() {}
 	
 	
 	public Movie(String movieID, String name) {
