@@ -1,11 +1,22 @@
-package SingletonPattern;
+// Singleton: private static final instance
+// private constructor
+// static method of getting instance
+// implements Cloneable and override clone method
 
-public class Cat {
+
+public class Cat implements Cloneable{
 	
-	// will only have one object in this class
-	static Cat myCat = new Cat();
+	private static final Cat c = new Cat();
+	
+	private Cat() {};  // private constructor so no one can create a new instance
 	
 	public static Cat getInstance() {
-		return myCat;
-	}	
+		return c;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return c;
+	}
 }
